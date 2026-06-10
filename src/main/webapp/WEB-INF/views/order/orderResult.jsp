@@ -1,11 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"
-	isELIgnored="false"%> 
+	isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>주문 완료</title>
+
+<link href="${contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
+<link href="${contextPath}/resources/css/basic-jquery-slider.css" rel="stylesheet" type="text/css">
+<link href="${contextPath}/resources/css/mobile.css" rel="stylesheet" type="text/css">
+
 </head>
-<BODY>
-	<H1>1.최종 주문 내역서</H1>
+<body>
+
+<div id="outer_wrap">
+	<div id="wrap">
+
+		<header>
+			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+		</header>
+
+		<div class="clear"></div>
+
+		<aside>
+			<jsp:include page="/WEB-INF/views/common/side.jsp"/>
+		</aside>
+
+		<article>
+
+    <H1>1.최종 주문 내역서</H1>
 	<TABLE class="list_view">
 		<TBODY align=center>
 			<tr style="background: #33ff00">
@@ -31,7 +60,7 @@
 					  </h2>
 					</TD>
 					<td>
-					  <h2>${item.order_goods_qty }개<h2>
+					  <h2>${item.order_goods_qty }개</h2>
 					</td>
 					<td><h2>${item.order_goods_qty *item.goods_sales_price}원 (10% 할인)</h2></td>
 					<td><h2>0원</h2></td>
@@ -81,7 +110,7 @@
 					<TD class="fixed_join">주소</TD>
 					<td>
 					   ${myOrderInfo.delivery_address}
-					</td>>
+					</td>
 				</TR>
 				<TR class="dot_line">
 					<TD class="fixed_join">배송 메시지</TD>
@@ -165,7 +194,24 @@
 		<a href="${contextPath}/main/main.do"> 
 		   <IMG width="75" alt="" src="${contextPath}/resources/image/btn_shoping_continue.jpg">
 		</a>
-<DIV class="clear"></DIV>		
+<DIV class="clear"></DIV>
+
+		</article>
+
+		<div class="clear"></div>
+
+		<footer>
+			<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+		</footer>
+
+	</div>
+
+	<jsp:include page="/WEB-INF/views/common/quickMenu.jsp"/>
+
+</div>
+
+</body>
+</html>
 	
 			
 			
