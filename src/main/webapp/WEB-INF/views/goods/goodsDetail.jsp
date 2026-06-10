@@ -53,33 +53,49 @@
 }
 </style>
 <script type="text/javascript">
-	function add_cart(goods_id) {
-		$.ajax({
-			type : "post",
-			async : false, //false인 경우 동기식으로 처리한다.
-			url : "${contextPath}/cart/addGoodsInCart.do",
-			data : {
-			goods_id: goods_id,
-			cart_goods_qty: $("#order_goods_qty").val()
-			},
-			success : function(data, textStatus) {
-				//alert(data);
-			//	$('#message').append(data);
-				if(data.trim()=='add_success'){
-					imagePopup('open', '.layer01');	
-				}else if(data.trim()=='already_existed'){
-					alert("이미 카트에 등록된 상품입니다.");	
-				}
-				
-			},
-			error : function(data, textStatus) {
-				alert("에러가 발생했습니다."+data);
-			},
-			complete : function(data, textStatus) {
-				//alert("작업을완료 했습니다");
-			}
-		}); //end ajax	
+
+	function checkLogin(message) {
+		var isLogOn = document.getElementById("isLogOn").value;
+
+		if(isLogOn=="false" || isLogOn=="" || isLogOn=="null"){
+			alert(message);
+			location.href="${contextPath}/member/loginForm.do";
+			return false;
+		}
+		return true;
 	}
+
+	function add_cart(goods_id) {
+    var isLogOn = document.getElementById("isLogOn").value;
+
+    if(isLogOn=="false" || isLogOn=="" || isLogOn=="null"){
+        alert("로그인 후 장바구니 이용이 가능합니다.");
+        location.href="${contextPath}/member/loginForm.do";
+        return;
+    }
+
+    $.ajax({
+        type : "post",
+        async : false,
+        url : "${contextPath}/cart/addGoodsInCart.do",
+        data : {
+            goods_id: goods_id,
+            cart_goods_qty: $("#order_goods_qty").val()
+        },
+        success : function(data, textStatus) {
+            if(data.trim()=='add_success'){
+                imagePopup('open');
+            }else if(data.trim()=='already_existed'){
+                alert("이미 카트에 등록된 상품입니다.");
+            }
+        },
+        error : function(data, textStatus) {
+            alert("장바구니 처리 중 오류가 발생했습니다.");
+        },
+        complete : function(data, textStatus) {
+        }
+    });
+}
 
 	function imagePopup(type) {
 		if (type == 'open') {
@@ -98,12 +114,9 @@
 	}
 	
 function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
-	var _isLogOn=document.getElementById("isLogOn");
-	var isLogOn=_isLogOn.value;
-	
-	 if(isLogOn=="false" || isLogOn=='' ){
-		alert("로그인 후 주문이 가능합니다!!!");
-	} 
+	if(!checkLogin("로그인 후 구매하기 이용이 가능합니다.")){
+		return;
+	}
 	
 	
 		var total_price,final_total_price;
@@ -139,15 +152,37 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
     formObj.action="${contextPath}/order/orderEachGoods.do";
     formObj.submit();
 	}	
+	function add_wish(){
+	if(!checkLogin("로그인 후 위시리스트 이용이 가능합니다.")){
+		return;
+	}
+
+	alert("위시리스트 기능은 준비 중입니다.");
+}
+
 </script>
 </head>
 <body>
-	<hgroup>
+<div id="outer_wrap">
+	<div id="wrap">
+		<header>
+			<jsp:include page="/WEB-INF/views/common/header.jsp" />
+		</header>
+
+		<div class="clear"></div>
+
+		<aside>
+			<jsp:include page="/WEB-INF/views/common/side.jsp" />
+		</aside>
+
+		<article>
+			<hgroup>
 		<h1>컴퓨터와 인터넷</h1>
 		<h2>국내외 도서 &gt; 컴퓨터와 인터넷 &gt; 웹 개발</h2>
 		<h3>${goods.goods_title }</h3>
 		<h4>${goods.goods_writer} &nbsp; 저| ${goods.goods_publisher}</h4>
-	</hgroup>
+</hgroup>
+
 	<div id="goods_image">
 		<figure>
 			<img alt="HTML5 &amp; CSS3"
@@ -225,7 +260,7 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 			<li><a class="buy" href="javascript:fn_order_each_goods('${goods.goods_id }','${goods.goods_title }','${goods.goods_sales_price}','${goods.goods_fileName}');">구매하기 </a></li>
 			<li><a class="cart" href="javascript:add_cart('${goods.goods_id }')">장바구니</a></li>
 			
-			<li><a class="wish" href="#">위시리스트</a></li>
+<li><a class="wish" href="javascript:add_wish()">위시리스트</a></li>
 		</ul>
 	</div>
 	<div class="clear"></div>
@@ -287,7 +322,19 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 		</div>
 	</div>
 
-<input type="hidden" name="isLogOn" id="isLogOn" value="${isLogOn}"/>
+<input type="hidden" name="isLogOn" id="isLogOn"
+       value="${sessionScope.isLogOn}"/>
+		</article>
+
+		<div class="clear"></div>
+
+		<footer>
+			<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+		</footer>
+	</div>
+
+	<jsp:include page="/WEB-INF/views/common/quickMenu.jsp" />
+</div>
 
 </body>
 </html>

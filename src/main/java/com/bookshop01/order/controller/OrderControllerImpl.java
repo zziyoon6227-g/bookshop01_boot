@@ -55,8 +55,9 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 			 }
 		 }
 		
-		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
+		//String viewName=(String)request.getAttribute("viewName");
+		//ModelAndView mav = new ModelAndView(viewName);
+		ModelAndView mav = new ModelAndView("order/orderGoodsForm");
 		
 		List myOrderList=new ArrayList<OrderVO>();
 		myOrderList.add(orderVO);

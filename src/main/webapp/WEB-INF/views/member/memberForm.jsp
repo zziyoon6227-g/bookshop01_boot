@@ -7,7 +7,12 @@
 <html>
 <head>
 <meta charset="utf-8">
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+<link href="${contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
+
+<script src="${contextPath}/resources/jquery/jquery-1.6.2.min.js" type="text/javascript"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <script>
 
 
@@ -234,7 +239,8 @@ function fn_overlapped(){
 				<tr class="dot_line">
 					<td class="fixed_join">주소</td>
 					<td>
-					   <input type="text" id="zipcode" name="zipcode" size="10" > <a href="javascript:execDaumPostcode()">우편번호검색</a>
+					   <input type="text" id="zipcode" name="zipcode" size="10">
+					   <input type="button" value="우편번호검색" onclick="execDaumPostcode()">
 					  <br>
 					  <p> 
 					   지번 주소:<br><input type="text" id="roadAddress"  name="roadAddress" size="50"><br><br>
