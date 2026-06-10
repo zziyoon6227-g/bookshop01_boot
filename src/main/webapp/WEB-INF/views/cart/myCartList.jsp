@@ -13,6 +13,18 @@
 <c:set  var="totalDiscountedPrice" value="0" /> <!-- 총 할인금액 -->
 <head>
 <script src="${contextPath}/resources/jquery/jquery-1.6.2.min.js"></script>
+<script src="${contextPath}/resources/jquery/jquery.easing.1.3.js"></script>
+<script src="${contextPath}/resources/jquery/stickysidebar.jquery.js"></script>
+
+<script>
+$(function() {
+	$("#sticky").stickySidebar({
+		timer : 100,
+		easing : "easeInBounce"
+	});
+});
+</script>
+
 <script type="text/javascript">
 function calcGoodsPrice(bookPrice,obj){
 	var totalPrice,final_total_price,totalNum;
@@ -183,8 +195,27 @@ function fn_order_all_cart_goods(){
 }
 
 </script>
+<link href="${contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
+<link href="${contextPath}/resources/css/basic-jquery-slider.css" rel="stylesheet" type="text/css">
+<link href="${contextPath}/resources/css/mobile.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
+<div id="outer_wrap">
+	<div id="wrap">
+
+		<header>
+			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+		</header>
+
+		<div class="clear"></div>
+
+		<aside>
+			<jsp:include page="/WEB-INF/views/common/side.jsp"/>
+		</aside>
+
+		<article>
+
 	<table class="list_view">
 		<tbody align=center >
 			<tr style="background:#33ff00" >
@@ -334,3 +365,16 @@ function fn_order_all_cart_goods(){
 		 </a>
 	<center>
 </form>	
+		</article>
+
+		<div class="clear"></div>
+
+		<footer>
+			<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+		</footer>
+
+	</div>
+
+	<jsp:include page="/WEB-INF/views/common/quickMenu.jsp"/>
+
+</div>

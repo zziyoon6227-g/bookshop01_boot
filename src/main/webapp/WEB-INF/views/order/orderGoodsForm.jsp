@@ -18,7 +18,13 @@
 <c:set var="total_delivery_price" value="0" />
 
 <head>
+<link href="${contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
+<link href="${contextPath}/resources/css/mobile.css" rel="stylesheet" type="text/css">
+
 <script src="${contextPath}/resources/jquery/jquery-1.6.2.min.js"></script>
+<script src="${contextPath}/resources/jquery/jquery.easing.1.3.js"></script>
+<script src="${contextPath}/resources/jquery/stickysidebar.jquery.js"></script>
+
 <style>
 #layer {
 	z-index: 2;
@@ -500,9 +506,34 @@ function fn_process_pay_order(){
 	imagePopup('close');
 }
 </script>
+<script>
+$(function() {
+	$("#sticky").stickySidebar({
+		timer : 100,
+		easing : "easeInBounce"
+	});
+});
+</script>
 </head>
 <body>
+	
+<div id="outer_wrap">
+	<div id="wrap">
+
+		<header>
+			<jsp:include page="/WEB-INF/views/common/header.jsp" />
+		</header>
+
+		<div class="clear"></div>
+
+		<aside>
+			<jsp:include page="/WEB-INF/views/common/side.jsp" />
+		</aside>
+
+		<article>
+
 	<H1>1.주문확인</H1>
+
 <form  name="form_order">	
 	<table class="list_view">
 		<tbody align=center>
@@ -990,6 +1021,25 @@ function fn_process_pay_order(){
 			</div>
 			<div class="clear"></div>	
 			<br> 
+
+						</div>
+		</div>
+	</center>
+
+		</article>
+
+		<div class="clear"></div>
+
+		<footer>
+			<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+		</footer>
+	</div>
+
+	<jsp:include page="/WEB-INF/views/common/quickMenu.jsp" />
+</div>
+
+</body>
+</html>
 			
 			
 			
