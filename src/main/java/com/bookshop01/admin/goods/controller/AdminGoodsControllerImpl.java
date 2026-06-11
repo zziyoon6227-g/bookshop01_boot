@@ -55,7 +55,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 // endDate=tempDate[1];
 
 beginDate = "2018-10-01";
-endDate = "2018-10-31";
+endDate = "2026-12-31";
 
 		dateMap.put("beginDate", beginDate);
 		dateMap.put("endDate", endDate);
