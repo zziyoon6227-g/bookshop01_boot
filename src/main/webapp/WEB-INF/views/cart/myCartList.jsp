@@ -240,8 +240,17 @@ function fn_order_all_cart_goods(){
 			 <tr>       
                <form name="frm_order_all_cart">
 				      <c:forEach var="item" items="${myGoodsList }" varStatus="cnt">
-				       <c:set var="cart_goods_qty" value="${myCartList[cnt.count-1].cart_goods_qty}" />
-				       <c:set var="cart_id" value="${myCartList[cnt.count-1].cart_id}" />
+					  
+ 				      <c:set var="cart_goods_qty" value="0" />
+ 				      <c:set var="cart_id" value="0" />
+
+				      <c:forEach var="cart" items="${myCartList}">
+				      <c:if test="${cart.goods_id == item.goods_id}">
+				      <c:set var="cart_goods_qty" value="${cart.cart_goods_qty}" />
+				      <c:set var="cart_id" value="${cart.cart_id}" />
+				      </c:if>
+				      </c:forEach>
+
 					<td><input type="checkbox" name="checked_goods"  checked  value="${item.goods_id }"  onClick="calcGoodsPrice(${item.goods_sales_price },this)"></td>
 					<td class="goods_image">
 					<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
