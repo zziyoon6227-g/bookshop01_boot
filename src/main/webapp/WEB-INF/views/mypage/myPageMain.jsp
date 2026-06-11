@@ -6,7 +6,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="${contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
+<script src="${contextPath}/resources/jquery/jquery-1.6.2.min.js"></script>
+<script src="${contextPath}/resources/jquery/jquery.easing.1.3.js"></script>
+<script src="${contextPath}/resources/jquery/stickysidebar.jquery.js"></script>
+
+<script>
+$(function() {
+    $("#sticky").stickySidebar({
+        timer : 100,
+        easing : "easeInBounce"
+    });
+});
+</script>
+
 <meta charset="utf-8">
+
+
 <c:if test="${message=='cancel_order'}">
 	<script>
 	window.onload=function()
@@ -40,6 +56,21 @@ function fn_cancel_order(order_id){
 </script>
 </head>
 <body>
+<div id="outer_wrap">
+  <div id="wrap">
+
+    <header>
+      <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+    </header>
+
+    <div class="clear"></div>
+
+    <aside>
+      <jsp:include page="/WEB-INF/views/common/side.jsp"/>
+    </aside>
+
+    <article>
+
 <h1>최근주문내역
     <A href="#"> <IMG  src="${contextPath}/resources/image/btn_more_see.jpg">  </A> 
 </h1>
@@ -189,5 +220,19 @@ function fn_cancel_order(order_id){
    </td>
    </tr>
 </table>
+
+    </article>
+
+    <div class="clear"></div>
+
+    <footer>
+      <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+    </footer>
+
+  </div>
+
+  <jsp:include page="/WEB-INF/views/common/quickMenu.jsp"/>
+
+</div>
 </body>
 </html>
