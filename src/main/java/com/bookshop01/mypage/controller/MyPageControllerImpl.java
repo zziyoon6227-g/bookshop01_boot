@@ -30,8 +30,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 	@Autowired
 	private MyPageService myPageService;
 	
-	@Autowired
-	private MemberVO memberVO;
+	
 	
 	@Override
 	@RequestMapping(value="/myPageMain.do" ,method = RequestMethod.GET)
@@ -43,8 +42,13 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		memberVO=(MemberVO)session.getAttribute("memberInfo");
-		String member_id=memberVO.getMember_id();
+
+		MemberVO memberVO = (MemberVO) session.getAttribute("memberInfo");
+		if (memberVO == null) {
+		mav.setViewName("redirect:/member/loginForm.do");
+		return mav;
+		}
+		String member_id = memberVO.getMember_id();
 		
 		List<OrderVO> myOrderList=myPageService.listMyOrderGoods(member_id);
 		

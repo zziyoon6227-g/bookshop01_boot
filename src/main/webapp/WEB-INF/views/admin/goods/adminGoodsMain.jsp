@@ -8,6 +8,9 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="stylesheet" href="${contextPath}/resources/css/main.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/admin.css">
+
 <script>
 function search_goods_list(fixeSearchPeriod){
 	var formObj=document.createElement("form");
@@ -20,7 +23,7 @@ function search_goods_list(fixeSearchPeriod){
     formObj.action="${contextPath}/admin/goods/adminGoodsMain.do";
     formObj.submit();
 }
-
+ 
 
 function  calcPeriod(search_period){
 	var dt = new Date();
@@ -89,6 +92,8 @@ function  calcPeriod(search_period){
 </script>
 </head>
 <body>
+
+
 	<H3>상품 조회</H3>
 	<form  method="post">	
 		<TABLE cellpadding="10" cellspacing="10"  >
@@ -246,14 +251,12 @@ function  calcPeriod(search_period){
   </c:choose>
            <tr>
              <td colspan=8 class="fixed">
-                 <c:forEach   var="page" begin="1" end="10" step="1" >
+                 <c:forEach var="page" begin="1" end="3" step="1">
 		         <c:if test="${section >1 && page==1 }">
 		          <a href="${contextPath}/admin/goods/adminGoodsMain.do?chapter=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp; &nbsp;</a>
 		         </c:if>
 		          <a href="${contextPath}/admin/goods/adminGoodsMain.do?chapter=${section}&pageNum=${page}">${(section-1)*10 +page } </a>
-		         <c:if test="${page ==10 }">
-		          <a href="${contextPath}/admin/goods/adminGooodsMain.do?chapter=${section+1}&pageNum=${section*10+1}">&nbsp; next</a>
-		         </c:if> 
+		         
 	      		</c:forEach> 
      
 		</TBODY>
@@ -267,5 +270,11 @@ function  calcPeriod(search_period){
 		<input   type="submit" value="상품 등록하기">
 	</form>
 </DIV>
+
+    </div>
+<jsp:include page="../../common/quickMenu.jsp" />
+  </div>
+<jsp:include page="../../common/footer.jsp" />
+</div>
 </body>
 </html>

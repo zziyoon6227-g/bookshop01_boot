@@ -7,7 +7,15 @@
 
 <meta charset="utf-8">
 <head>
+<meta charset="utf-8">
+
+<link rel="stylesheet" href="${contextPath}/resources/css/main.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/admin.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script type="text/javascript">
+
   var cnt=0;
   function fn_addFile(){
 	  if(cnt == 0){
