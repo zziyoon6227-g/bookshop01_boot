@@ -8,11 +8,24 @@
 <html>
 <head>
 <meta charset="utf-8">
+
 <link rel="stylesheet" href="${contextPath}/resources/css/main.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/admin.css">
+<script src="${contextPath}/resources/jquery/jquery-1.6.2.min.js"></script>
+<script src="${contextPath}/resources/jquery/jquery.easing.1.3.js"></script>
+<script src="${contextPath}/resources/jquery/stickysidebar.jquery.js"></script>
 
 <script>
-function search_goods_list(fixeSearchPeriod){
+$(function() {
+    $("#sticky").stickySidebar({
+        timer : 100,
+        easing : "easeInBounce"
+    });
+});
+</script>
+
+<script>
+function search_goods_list(searchPeriod){
 	var formObj=document.createElement("form");
 	var i_fixedSearch_period = document.createElement("input");
 	i_fixedSearch_period.name="fixedSearchPeriod";
@@ -92,7 +105,22 @@ function  calcPeriod(search_period){
 </script>
 </head>
 <body>
+<div id="outer_wrap">
+<div id="wrap">
 
+<header>
+    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+</header>
+
+<div class="clear"></div>
+
+<c:set var="side_menu" value="admin_mode" />
+
+<aside>
+    <jsp:include page="/WEB-INF/views/common/side.jsp"/>
+</aside>
+
+<article>
 
 	<H3>상품 조회</H3>
 	<form  method="post">	
@@ -271,10 +299,19 @@ function  calcPeriod(search_period){
 	</form>
 </DIV>
 
-    </div>
-<jsp:include page="../../common/quickMenu.jsp" />
-  </div>
-<jsp:include page="../../common/footer.jsp" />
+</article>
+
+<div class="clear"></div>
+
+<footer>
+    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+</footer>
+
 </div>
+
+<jsp:include page="/WEB-INF/views/common/quickMenu.jsp"/>
+
+</div>
+
 </body>
 </html>
