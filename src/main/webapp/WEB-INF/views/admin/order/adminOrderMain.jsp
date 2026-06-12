@@ -8,7 +8,21 @@
 <link href="${contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
 <link href="${contextPath}/resources/css/basic-jquery-slider.css" rel="stylesheet" type="text/css">
 <link href="${contextPath}/resources/css/mobile.css" rel="stylesheet" type="text/css">
-<meta  charset="utf-8">
+
+<meta charset="utf-8">
+
+<script src="${contextPath}/resources/jquery/jquery-1.6.2.min.js"></script>
+<script src="${contextPath}/resources/jquery/jquery.easing.1.3.js"></script>
+<script src="${contextPath}/resources/jquery/stickysidebar.jquery.js"></script>
+
+<script>
+$(function() {
+    $("#sticky").stickySidebar({
+        timer : 100,
+        easing : "easeInBounce"
+    });
+});
+</script>
 <c:choose>
 <c:when test='${not empty order_goods_list}'>
 <script  type="text/javascript">
