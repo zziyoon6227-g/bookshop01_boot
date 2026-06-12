@@ -45,9 +45,12 @@ public class AdminOrderControllerImpl extends BaseController  implements AdminOr
 	@RequestMapping(value="/adminOrderMain.do" ,method={RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView adminOrderMain(@RequestParam Map<String, String> dateMap,
 			                          HttpServletRequest request, HttpServletResponse response)  throws Exception {
-		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
-
+	String viewName=(String)request.getAttribute("viewName");
+	ModelAndView mav = new ModelAndView(viewName);
+										
+	HttpSession session = request.getSession();
+	session.setAttribute("side_menu", "admin_mode");
+										
 		String fixedSearchPeriod = dateMap.get("fixedSearchPeriod");
 		String section = dateMap.get("section");
 		String pageNum = dateMap.get("pageNum");
@@ -118,5 +121,4 @@ public class AdminOrderControllerImpl extends BaseController  implements AdminOr
 		mav.addObject("orderMap", orderMap);
 		return mav;
 	}
-	
 }

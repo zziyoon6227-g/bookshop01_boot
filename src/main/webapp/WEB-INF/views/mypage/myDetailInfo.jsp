@@ -6,8 +6,23 @@
 <!DOCTYPE html >
 <html>
 <head>
+<link href="${contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
+<link href="${contextPath}/resources/css/mobile.css" rel="stylesheet" type="text/css">
+<script src="${contextPath}/resources/jquery/jquery-1.6.2.min.js"></script>
+<script src="${contextPath}/resources/jquery/jquery.easing.1.3.js"></script>
+<script src="${contextPath}/resources/jquery/stickysidebar.jquery.js"></script>
+
+<script>
+$(function() {
+    $("#sticky").stickySidebar({
+        timer : 100,
+        easing : "easeInBounce"
+    });
+});
+</script>
 <meta charset="utf-8">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
  <script>
     function execDaumPostcode() {
         new daum.Postcode({
@@ -228,7 +243,24 @@ function fn_modify_member_info(attribute){
 </head>
 
 <body>
-	<h3>내 상세 정보</h3>
+<div id="outer_wrap">
+<div id="wrap">
+
+<header>
+    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+</header>
+
+<div class="clear"></div>
+
+<c:set var="side_menu" value="my_page" />
+
+<aside>
+    <jsp:include page="/WEB-INF/views/common/side.jsp"/>
+</aside>
+
+<article>
+
+    <h3>내 상세 정보</h3>
 <form name="frm_mod_member">	
 	<div id="detail_table">
 		<table>
@@ -460,6 +492,21 @@ function fn_modify_member_info(attribute){
 	</div>
 	<input  type="hidden" name="h_tel1" value="${memberInfo.tel1}" />
 	<input  type="hidden" name="h_hp1" value="${memberInfo.hp1}" />		
-</form>	
+</form>
+
+</article>
+
+<div class="clear"></div>
+
+<footer>
+    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+</footer>
+
+</div>
+
+<jsp:include page="/WEB-INF/views/common/quickMenu.jsp"/>
+
+</div>
+
 </body>
 </html>

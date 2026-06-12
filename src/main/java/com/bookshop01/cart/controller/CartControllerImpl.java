@@ -38,9 +38,8 @@ public class CartControllerImpl extends BaseController implements CartController
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		HttpSession session=request.getSession();
+		session.removeAttribute("side_menu");
 		
-
-
 		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
 		String member_id=memberVO.getMember_id();
 

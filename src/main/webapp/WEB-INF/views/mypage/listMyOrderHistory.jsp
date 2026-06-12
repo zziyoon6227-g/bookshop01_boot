@@ -7,6 +7,20 @@
 <html>
 <head>
 <meta   charset="utf-8">
+<link href="${contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
+<link href="${contextPath}/resources/css/mobile.css" rel="stylesheet" type="text/css">
+<script src="${contextPath}/resources/jquery/jquery-1.6.2.min.js"></script>
+<script src="${contextPath}/resources/jquery/jquery.easing.1.3.js"></script>
+<script src="${contextPath}/resources/jquery/stickysidebar.jquery.js"></script>
+
+<script>
+$(function() {
+    $("#sticky").stickySidebar({
+        timer : 100,
+        easing : "easeInBounce"
+    });
+});
+</script>
 <script>
 function search_order_history(fixedSearchPeriod){
 	var formObj=document.createElement("form");
@@ -40,6 +54,23 @@ function fn_cancel_order(order_id){
 </script>
 </head>
 <body>
+<div id="outer_wrap">
+<div id="wrap">
+
+<header>
+    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+</header>
+
+<div class="clear"></div>
+
+<c:set var="side_menu" value="my_page" />
+
+<aside>
+    <jsp:include page="/WEB-INF/views/common/side.jsp"/>
+</aside>
+
+<article>
+
 	<H3>주문 배송 조회</H3>
 	<form  method="post">	
 		<table>
@@ -238,6 +269,21 @@ function fn_cancel_order(order_id){
 		</tbody>
 	</table>
      	
-	<div class="clear"></div>
+<div class="clear"></div>
+
+</article>
+
+<div class="clear"></div>
+
+<footer>
+    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+</footer>
+
+</div>
+
+<jsp:include page="/WEB-INF/views/common/quickMenu.jsp"/>
+
+</div>
+
 </body>
 </html>
