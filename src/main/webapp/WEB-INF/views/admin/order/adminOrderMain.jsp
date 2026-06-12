@@ -5,6 +5,9 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <html>
 <head>
+<link href="${contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
+<link href="${contextPath}/resources/css/basic-jquery-slider.css" rel="stylesheet" type="text/css">
+<link href="${contextPath}/resources/css/mobile.css" rel="stylesheet" type="text/css">
 <meta  charset="utf-8">
 <c:choose>
 <c:when test='${not empty order_goods_list}'>
@@ -267,6 +270,20 @@ function fn_detail_search(){
 </script>
 </head>
 <body>
+<div id="outer_wrap">
+<div id="wrap">
+
+<header>
+    <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+</header>
+
+<div class="clear"></div>
+
+<aside>
+    <jsp:include page="/WEB-INF/views/common/side.jsp"/>
+</aside>
+
+<article>
 	<H3>주문 조회</H3>
 	<form name="frm_delivery_list" action="${contextPath }/admin/admin.do" method="post">	
 		<table   >
@@ -587,7 +604,20 @@ function fn_detail_search(){
 		</tbody>
 	</table>
   </form>   	
-	<div class="clear"></div>
+</article>
+
+<div class="clear"></div>
+
+<footer>
+    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+</footer>
+
+</div>
+
+<jsp:include page="/WEB-INF/views/common/quickMenu.jsp"/>
+
+</div>
+
 </body>
 </html>
 

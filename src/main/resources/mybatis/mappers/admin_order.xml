@@ -75,7 +75,7 @@
 			              select  *  from t_shopping_order 
 			              where to_char(pay_order_time,'yyyy-mm-dd')  between #{beginDate} and #{endDate}
 			                <if test="search_type=='orderer_id'">
-			                  AND orderer_id=#{search_word}
+			                AND member_id=#{search_word}
 			                </if>
 			                <if test="search_type=='orderer_name'">
 			                  AND orderer_name=#{search_word}
