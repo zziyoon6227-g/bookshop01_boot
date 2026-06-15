@@ -144,5 +144,8 @@
 	   where order_id=#{order_id}
 	</update>
 		
-		
+	<delete id="deleteMember" parameterType="String">
+    delete from t_shopping_member
+    where member_id=#{member_id}
+</delete>	
 </mapper>

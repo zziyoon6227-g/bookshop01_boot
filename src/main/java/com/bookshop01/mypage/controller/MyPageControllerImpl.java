@@ -181,4 +181,22 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		return resEntity;
 	}	
 	
+	@RequestMapping(value="/deleteMember.do", method=RequestMethod.GET)
+	public String deleteMember(HttpServletRequest request) throws Exception {
+
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("memberInfo");
+
+		if(memberVO == null) {
+			return "redirect:/member/loginForm.do";
+		}
+
+		String member_id = memberVO.getMember_id();
+
+		myPageService.deleteMember(member_id);
+
+		session.invalidate();
+
+		return "redirect:/main/main.do";
+	}
 }

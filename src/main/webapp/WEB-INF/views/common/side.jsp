@@ -36,7 +36,7 @@
 			<li><a href="${contextPath}/mypage/myDetailInfo.do">회원정보관리</a></li>
 			<li><a href="#">나의 주소록</a></li>
 			<li><a href="#">개인정보 동의내역</a></li>
-			<li><a href="#">회원탈퇴</a></li>
+			<li><a href="javascript:deleteMemberConfirm()">회원탈퇴</a></li>
 		</ul>
 	</li>
 </c:when>
@@ -91,3 +91,13 @@
 <div id="banner">
 	<a href="#"><img width="190" height="69" src="${contextPath}/resources/image/QnA_logo.jpg"></a>
 </div>
+
+<script>
+function deleteMemberConfirm() {
+    var result = confirm("정말 회원탈퇴 하시겠습니까?\n탈퇴 후에는 복구할 수 없습니다.");
+
+    if(result) {
+        location.href = "${contextPath}/mypage/deleteMember.do";
+    }
+}
+</script>
